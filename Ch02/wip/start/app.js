@@ -78,12 +78,24 @@
       // Modify the selector so that only available colors are selectable
       // Use setColors from hook
       setColors(availableColors);
+      setSize(selectedSize);
+
+      // If the color selected is not available for this size
+      // indexOf() returns -1 if the elt is not in the array
+      if (availableColors.indexOf(color) === -1) {
+        // then set the color selector to the first available color
+        setColor(availableColors[0]);
+      }
     }
 
     const handleColorChange = (selectedColor) => {
       const availableSizes = window.Inventory.byColor[selectedColor]
       setSizes(availableSizes);
       setColor(selectedColor);
+
+      if (availableSizes.indexOf(size) === -1) {
+        setSize(availableSizes)[0]
+      }
     }
 
     console.log(color)
